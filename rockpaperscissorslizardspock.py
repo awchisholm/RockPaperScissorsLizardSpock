@@ -48,9 +48,9 @@ game_logic_list = \
    [Lizard,   Lizard,   draw],
    [Lizard,   Spock,    computer_wins],
    [Spock,    Rock,     computer_wins],
-   [Spock,    Paper,    player_wins],
+   [Spock,    Paper,    computer_wins],
    [Spock,    Scissors, computer_wins],
-   [Spock,    Lizard,   player_wins],
+   [Spock,    Lizard,   computer_wins],
    [Spock,    Spock,    draw],
   ]
 game_logic = pd.DataFrame(game_logic_list, columns=['Computer', 'Player', 'Result'])
@@ -71,7 +71,7 @@ while True:
   
   # Get the computer to choose 
   computer_choice = random.choice(computer_choices)
-  #computer_choice = game_logic[(game_logic['Player'] == player_choice) & (game_logic['Result'] == computer_wins)]['Computer'].values[0] 
+  computer_choice = game_logic[(game_logic['Player'] == player_choice) & (game_logic['Result'] == computer_wins)]['Computer'].values[0] 
   
   # Look up what the player and the computer chose to get the result
   result = game_logic[(game_logic['Player'] == player_choice) & (game_logic['Computer'] == computer_choice)]['Result'].values[0]
@@ -81,7 +81,7 @@ while True:
   if result == player_wins:
     player_score += 1
   if result == draw:
-    draws += 1
+    draws = 1
   # print the result and the running totals
   print(f"[{player_name} chose {player_choice}] [{computer_name} chose {computer_choice}] [Result {result}]")
   print(f"Running totals: [{player_name}: {player_score}] [Computer: {computer_score}] [Draws: {draws}]")
